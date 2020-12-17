@@ -88,6 +88,6 @@ def stop():
 
 if __name__ == "__main__":
  print("Starting up Woody Bot, have a great time!")
- app.run(host='192.168.1.73',port=5010)
+ app.run(host='0.0.0.0',port=0)
 
 
