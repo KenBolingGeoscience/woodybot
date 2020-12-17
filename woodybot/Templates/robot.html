@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+<img src="http://192.168.1.73:8081" /> <!--Enter the IP Address of your Raspberry Pi-->
+<div style="float:right">
+
+</div>
+<div style=" height:1024px; width:768px; float:right;">
+<center>
+<h1><span style="color:#5C5C5C;">Woody</span><span style="color:#139442">Bot</span></h1>
+<h2>The $40 Test Platform</h2><br><br>
+<a href="#" id="up" style="font-size:30px;text-decoration:none;">  &#8593;&#8593;<br>Forward</a><br><br></center>
+<a href="#" id="left" style="font-size:30px;text-decoration:none;"> &#8592;&#8592;Left</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#" id="right" style="font-size:30px; text-decoration:none;"> Right&#8594;&#8594;</a><br><br>
+<center><a href="#" id="down" style="font-size:30px;text-decoration:none;"> Backward<br> &#8595;&#8595;</a></center>
+</div>
+
+<script>
+
+$( document ).ready(function(){
+    $("#down").on("mousedown", function() {
+     $.get('/down_side');
+     }).on('mouseup', function() {
+     $.get('/stop');
+    });
+    $("#up").on("mousedown", function() {
+     $.get('/up_side');
+     }).on('mouseup', function() {
+     $.get('/stop');
+    });
+    $("#left").on("mousedown", function() {
+     $.get('/left_side');
+     }).on('mouseup', function() {
+     $.get('/stop');
+    });
+    $("#right").on("mousedown", function() {
+     $.get('/right_side');
+     }).on('mouseup', function() {
+     $.get('/stop');
+    });
+});
+document.addEventListener('keydown', function(event) {
+     if(event.keyCode == "83")  {
+        $.get('/down_side');
+        //console.log('S was pressed');
+
+    }
+    else if(event.keyCode == "87")  {
+        $.get('/up_side');
+        console.log('W was pressed');
+
+    }
+    else if(event.keyCode == "65") {
+         $.get('/left_side');
+         console.log('A was pressed');
+    }
+    else if(event.keyCode == "68") {
+         $.get('/right_side');
+         console.log('D was pressed');
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+     if(event.keyCode == "83")  {
+        $.get('/stop');
+        console.log('S was released');
+
+    }
+    else if(event.keyCode == "87")  {
+        $.get('/stop');
+        console.log('W was released');
+
+    }
+    else if(event.keyCode == "65") {
+         $.get('/stop');
+         console.log('A was released');
+    }
+    else if(event.keyCode == "68") {
+          $.get('/stop');
+         console.log('D was released');
+    }
+});
+
+</script>
+
+</body>
+</html>
